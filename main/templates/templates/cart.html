@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кошик</title>
+    <link rel="stylesheet" href="{% static 'deps/css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{% static 'deps/img/logo.png' %}" alt="Nintendo Switch">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Каталог</a></li>
+                <li><a href="#">Акції</a></li>
+                <li><a href="#">Блог</a></li>
+                <li><a href="#">Контакти</a></li>
+            </ul>
+        </nav>
+        <div class="header-right">
+            <a href="#">Увійти</a>
+            <a href="{% url 'main:cart' %}" class="cart-icon">Кошик</a>
+        </div>
+    </header>
+
+    <section class="cart">
+        <h2>Ваш кошик</h2>
+        {% if cart %}
+            <div class="cart-items">
+                {% for game_id, item in cart.items %}
+                    <div class="cart-item">
+                        <img class="cart-img" src="{% static item.img %}" alt="{{ item.name }}">
+                        <h3>{{ item.name }}</h3>
+                        <p>Ціна: ₴{{ item.price }}</p>
+                        <p>Кількість: {{ item.quantity }}</p>
+                        <a href="{% url 'main:remove_from_cart' game_id %}">Видалити</a>
+                    </div>
+                {% endfor %}
+            </div>
+            <h3>Загальна вартість: ₴{{ total_price }}</h3>
+            <button class="buy">Купити</button>
+        {% else %}
+            <p>Ваш кошик порожній.</p>
+        {% endif %}
+    </section>
+
+    <footer>
+        <p>&copy; 2024 NinSell</p>
+        <div class="social-media">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+        </div>
+    </footer>
+</body>
+</html>
+
