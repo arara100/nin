@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин картриджів Nintendo Switch</title>
+    <link rel="stylesheet" href="{% static 'deps/css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="{% url 'main:index' %}"><img src="{% static 'deps/img/logo.png' %}" alt="Nintendo Switch"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Каталог</a></li>
+                <li><a href="#">Акції</a></li>
+                <li><a href="#">Блог</a></li>
+                <li><a href="#">Контакти</a></li>
+            </ul>
+        </nav>
+        <div class="header-right">
+            <a href="#">Увійти</a>
+            <a href="{% url 'main:cart' %}" class="cart-icon">Кошик</a>
+        </div>
+    </header>
+
+    <main>
+        {% block main %}
+
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 NinSell</p>
+        <div class="social-media">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+        </div>
+    </footer>
+</body>
+</html>
